@@ -1,0 +1,7 @@
+int a = 2 << 1;
+int b = d * 2;
+while (a < b) {
+  if (1) {
+    exit(1);
+  }
+}

@@ -1,0 +1,10 @@
+caca : integer = 666
+caca := 1000
+
+coco : integer
+coco := 0
+
+defun foo(caca:integer, coco:integer):integer {
+
+}
+
