@@ -18,42 +18,39 @@ extern const char* delim;
 extern const char* prefixes;
 
 typedef enum {
-INT,
-FLOAT,
-CHAR,
-VOID,
-STRING,
-DATA_TYPE,
-ID,
-CONST,
-SEMICOLON,
-COMMA,
-COLON,
-OPENPAREN,
-CLOSINGPAREN,
-OPENBRACKET,
-CLOSINGBRACKET,
-ASSIGN,
-IF,
-WHILE,
-RETURN,
-ELSE,
-FOR,
-OP_ADD,
-OP_SUB,
-OP_MULT,
-OP_DIV,
-OP_LSHIFT,
-OP_RSHIFT,
-OP_LOGICAND,
-OP_LOGICOR,
-OP_GT,
-OP_LT,
-OP_GTE,
-OP_LTE,
-OP_EQ,
-OP_NEQ,
-EOF_TOKEN,
+  INT,
+  FLOAT,
+  CHAR,
+  VOID,
+  STRING,
+  ID,
+  CONST,
+  SEMICOLON,
+  COMMA,
+  OPENPAREN,
+  CLOSINGPAREN,
+  OPENBRACKET,
+  CLOSINGBRACKET,
+  ASSIGN,
+  IF,
+  WHILE,
+  RETURN,
+  ELSE,
+  FOR,
+  OP_ADD,
+  OP_SUB,
+  OP_MULT,
+  OP_DIV,
+  OP_LSHIFT,
+  OP_RSHIFT,
+  OP_LOGICAND,
+  OP_LOGICOR,
+  OP_GT,
+  OP_LT,
+  OP_GTE,
+  OP_LTE,
+  OP_EQ,
+  OP_NEQ,
 } token_type;
 
 //status flags for boilerplate stuff, hate return 0/1, having explicit enum makes it more readable
@@ -91,8 +88,8 @@ extern error_t ok;
 typedef long long integer_t;
 
 typedef struct {
-char* value;
-token_type type;
+  char* value;
+  token_type token;
 } token_t;      
 
 typedef struct node_t {
@@ -133,11 +130,8 @@ typedef struct environment_t {
 long file_sz(FILE*);
 char *file_contents(char*);
 
-//given a begin and end pointers to a token string, determine its type
-token_type determine_token_type(const char* begin, size_t len);
-
 //given a source, scan the next token and point to it with begin and end pointers
-error_t lex(char* src, token_t* token, char** begin, char** end);
+error_t lex(char* src, char** begin, char** end);
 
 error_t parse_expr(char* src, node_t* res);
 status_t valid_id(char* id);
