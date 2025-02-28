@@ -4,5 +4,5 @@
 set -xe
 
 
-gcc -o main main.c util.c
-./main example2.txt
+gcc -o lexer main.c util.c
+./lexer example2.txt
