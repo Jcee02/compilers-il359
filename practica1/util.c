@@ -29,7 +29,7 @@ void print_error(error_t error) {
     case ERROR_NONE:
       break;
   }
-  putchar('\n');
+  putchar('\n'); 
   if (error.msg) {
     printf("     : %s\n", error.msg);
   }
@@ -82,7 +82,7 @@ char *file_contents(char *path) {
 
 error_t ok = { ERROR_NONE, NULL };
 const char* ws = " \r\n";
-const char* delim = " \r\n,():{}=<>*";
+const char* delim = " \r\n,():{}=<>*;";
 const char* prefixes = "()'`";
 
 token_type determine_token_type(const char* begin, size_t len) {
@@ -109,6 +109,7 @@ token_type determine_token_type(const char* begin, size_t len) {
             case '<': return OP_LT;
             case '{': return OPENBRACKET;
             case '}': return CLOSINGBRACKET;
+            case ';': return SEMICOLON;
         }
     }
 
@@ -135,6 +136,11 @@ token_type determine_token_type(const char* begin, size_t len) {
     if (strcmp(temp, "while") == 0) return WHILE;
     if (strcmp(temp, "for") == 0) return FOR;
     if (strcmp(temp, "return") == 0) return RETURN;
+    if (strcmp(temp, "int") == 0) return DATA_TYPE;
+    if (strcmp(temp, "float") == 0) return DATA_TYPE;
+    if (strcmp(temp, "char") == 0) return DATA_TYPE;
+    if (strcmp(temp, "void") == 0) return DATA_TYPE;
+    if (strcmp(temp, "string") == 0) return DATA_TYPE;
     
     // If nothing else matches, it's an identifier
     return ID;
