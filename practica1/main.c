@@ -2,7 +2,7 @@
 #include "util.h"  
 
 
-static inline void print_usage(char **argv);
+void print_usage(char **argv);
 
 int main(int argc, char **argv) {
   if (argc != 2) {
@@ -23,6 +23,6 @@ int main(int argc, char **argv) {
   return EXIT_SUCCESS;
 }
 
-static inline void print_usage(char **argv) {
+void print_usage(char **argv) {
   printf("USAGE: %s <path>\n", argv[0]);
 }
